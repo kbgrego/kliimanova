@@ -1,147 +1,46 @@
-<header class="topbar">
-  <a class="brand" href="#home">
-    <span class="brand-mark">❄</span>
-    <span>{{ title }}</span>
-  </a>
-  <nav class="nav-links">
-    <a href="#services">Services</a>
-    <a href="#projects">Projects</a>
-    <a href="#reviews">Reviews</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <a class="btn btn-small" href="#quote">Request a quote</a>
-</header>
+<section class="page-shell">
+  <img class="background-image" src="/background.jpg" alt="Scenic background" />
+  <div class="overlay"></div>
 
-<main id="home" class="page-shell">
-  <section class="hero">
-    <div class="hero-copy">
-      <p class="eyebrow">HVAC installations • maintenance • smart climate</p>
-      <h1>Reliable comfort for homes and businesses.</h1>
-      <p class="hero-text">
-        We design and maintain air conditioning, heating, ventilation, and smart climate systems with
-        transparent quotes and dependable service.
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#quote">Request a quote</a>
-        <a class="btn btn-secondary" href="#services">Explore services</a>
-      </div>
-      <ul class="hero-points">
-        <li>Fast response and clear communication</li>
-        <li>Energy-efficient installations and upgrades</li>
-        <li>Long-term maintenance plans</li>
-      </ul>
+  <header class="brand" aria-label="Kliimanova company branding">
+    <img class="brand-logo" src="/logo.png" alt="Kliimanova logo" />
+    <div class="brand-text">
+      <span class="brand-name">Kliimanova</span>
+      <span class="brand-tag">heating • cooling • ventilation</span>
     </div>
+  </header>
+
+  <main class="hero">
     <div class="hero-card">
-      <p class="eyebrow">Why clients choose us</p>
-      <h2>End-to-end support from planning to aftercare.</h2>
-      <ul>
-        <li>Custom system design for each room and usage pattern</li>
-        <li>Certified installation team with attention to detail</li>
-        <li>Transparent maintenance and service plans</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="stats-grid" aria-label="Company highlights">
-    <article class="stat-card" *ngFor="let item of stats">
-      <strong>{{ item.value }}</strong>
-      <span>{{ item.label }}</span>
-    </article>
-  </section>
-
-  <section id="services" class="section">
-    <div class="section-heading">
-      <p class="eyebrow">Core services</p>
-      <h2>Comfort solutions for every season</h2>
-    </div>
-    <div class="card-grid">
-      <article class="card" *ngFor="let service of services">
-        <p class="card-tag">{{ service.tag }}</p>
-        <h3>{{ service.title }}</h3>
-        <p>{{ service.description }}</p>
-      </article>
-    </div>
-  </section>
-
-  <section id="projects" class="section">
-    <div class="section-heading">
-      <p class="eyebrow">Recent projects</p>
-      <h2>Projects that improve comfort and efficiency</h2>
-    </div>
-    <div class="card-grid">
-      <article class="project-card" *ngFor="let project of projects">
-        <div class="project-visual">🏗️</div>
-        <h3>{{ project.title }}</h3>
-        <p class="project-location">{{ project.location }}</p>
-        <p>{{ project.description }}</p>
-      </article>
-    </div>
-  </section>
-
-  <section id="about" class="section split-section">
-    <div>
-      <p class="eyebrow">About the company</p>
-      <h2>Professional HVAC support designed for modern living.</h2>
-      <p>
-        We combine technical expertise with a customer-first approach so every installation feels calm,
-        efficient, and built to last.
+      <h1>COMFORT</h1>
+      <h1><span class="headline-gradient">STARTS HERE</span></h1>
+      <p class="hero-subtitle">
+        Premium heating, cooling and ventilation solutions for your home and business.
       </p>
+      <div class="service-list" aria-label="Our services">
+        <span class="service-pill">
+          <i class="fa-solid fa-snowflake snowflake-icon"></i>
+          <span class="service-pill-text">Cooling</span>
+        </span>
+        <span class="service-pill">
+          <i class="fa-solid fa-fire fire-icon"></i>
+          <span class="service-pill-text">Heating</span>
+        </span>
+        <span class="service-pill">
+          <i class="fa-solid fa-wind wind-icon"></i>
+          <span class="service-pill-text">Ventilation</span>
+        </span>
+      </div>
+      <div class="cta-group" role="group" aria-label="Primary actions">
+        <a class="cta" href="#">
+          <span>GET FREE CONSULTATION</span>
+          <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="cta secondary" href="#">
+          <span>VIEW PROJECTS</span>
+          <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
     </div>
-    <div class="info-panel">
-      <h3>What you can expect</h3>
-      <ul>
-        <li>Detailed consultations before installation</li>
-        <li>Clear project planning and transparent pricing</li>
-        <li>Fast response for service and maintenance needs</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="reviews" class="section">
-    <div class="section-heading">
-      <p class="eyebrow">Client reviews</p>
-      <h2>Trusted by homeowners and business owners</h2>
-    </div>
-    <div class="card-grid">
-      <article class="review-card" *ngFor="let review of reviews">
-        <p>“{{ review.quote }}”</p>
-        <strong>{{ review.author }}</strong>
-      </article>
-    </div>
-  </section>
-
-  <section id="quote" class="section quote-section">
-    <div class="quote-copy">
-      <p class="eyebrow">Request a quote</p>
-      <h2>Start your comfort project with a simple consultation.</h2>
-      <p>Share your needs and we will contact you with a tailored recommendation and timeline.</p>
-    </div>
-    <form class="quote-form">
-      <label>
-        Name
-        <input type="text" placeholder="Your name" />
-      </label>
-      <label>
-        Email
-        <input type="email" placeholder="you@example.com" />
-      </label>
-      <label>
-        Service needed
-        <input type="text" placeholder="Air conditioning, heating, etc." />
-      </label>
-      <button class="btn btn-primary" type="button">Send request</button>
-    </form>
-  </section>
-</main>
-
-<footer id="contact" class="footer">
-  <div>
-    <p class="eyebrow">Contact</p>
-    <h2>{{ title }}</h2>
-  </div>
-  <div class="footer-links">
-    <a href="mailto:hello@klimanova.com">hello@klimanova.com</a>
-    <a href="tel:+380500000000">+38 (050) 000-00-00</a>
-    <span>Kyiv, Ukraine</span>
-  </div>
-</footer>
+  </main>
+</section>
