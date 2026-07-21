@@ -1,0 +1,73 @@
+.brand {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  font-family: 'Montserrat';
+  font-weight: 800;
+}
+
+.brand-logo {
+  width: auto;
+  height: 4rem;
+  max-height: 4.2rem;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-name {
+  font-size: 2rem;
+  font-weight: 100;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #f7f7f2;
+  line-height: 0.95;
+  letter-spacing: 0.16em;
+  font-family: 'Avenir Next';
+}
+
+.brand-tag {
+  margin-top: 0.2rem;
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247, 247, 242, 0.85);
+  font-family: 'Montserrat', 'Segoe UI', sans-serif;
+}
+
+@media (max-width: 640px) {
+  .brand {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.7rem 0.9rem;
+  }
+
+  .brand-logo {
+    height: calc(1.8rem + 0.8rem);
+    max-height: 2.8rem;
+  }
+
+  .brand-name {
+    font-size: 1.8rem;
+  }
+
+  .brand-tag {
+    font-size: 0.5rem;
+  }
+}

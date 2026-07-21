@@ -55,11 +55,21 @@ export class TranslationService {
   readonly currentLanguage = signal<SupportedLanguage>('en');
   readonly isMenuOpen = signal(false);
 
+  constructor() {
+    if (typeof window !== 'undefined') {
+      const lang = localStorage.getItem('language') as SupportedLanguage;
+      if (lang) {
+        this.currentLanguage.set(lang);
+      }
+    }
+  }
+
   translate(key: string): string {
     return this.translations[this.currentLanguage()][key] ?? this.translations.en[key] ?? key;
   }
 
   setLanguage(language: SupportedLanguage): void {
+    localStorage.setItem('language', language);
     this.currentLanguage.set(language);
     this.isMenuOpen.set(false);
   }

@@ -1,1 +1,29 @@
-<router-outlet />
+<section class="page-shell">
+  <div class="overlay"></div>
+
+  <div class="language-switcher" [class.open]="isMenuOpen">
+    <button class="language-trigger" type="button" (click)="toggleMenu()" [attr.aria-label]="t('language.label')">
+      <span class="flag" aria-hidden="true">{{ getFlag(currentLanguage) }}</span>
+      <span class="language-name">{{ t('language.' + currentLanguage) }}</span>
+    </button>
+
+    <div class="language-menu" role="menu" aria-label="Language options">
+      <button
+        *ngFor="let language of languages"
+        class="language-option"
+        type="button"
+        role="menuitem"
+        (click)="selectLanguage(language)"
+      >
+        <span class="flag" aria-hidden="true">{{ getFlag(language) }}</span>
+        <span>{{ t('language.' + language) }}</span>
+      </button>
+    </div>
+  </div>
+
+  <app-brand-logo></app-brand-logo>
+
+  <router-outlet />
+
+  <app-toolbar-bottom></app-toolbar-bottom>
+</section>

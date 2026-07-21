@@ -1,35 +1,4 @@
 <section class="page-shell">
-  <img class="background-image" src="/background.jpg" alt="Scenic background" />
-  <div class="overlay"></div>
-
-  <div class="language-switcher" [class.open]="isMenuOpen">
-    <button class="language-trigger" type="button" (click)="toggleMenu()" [attr.aria-label]="t('language.label')">
-      <span class="flag" aria-hidden="true">{{ getFlag(currentLanguage) }}</span>
-      <span class="language-name">{{ t('language.' + currentLanguage) }}</span>
-    </button>
-
-    <div class="language-menu" role="menu" aria-label="Language options">
-      <button
-        *ngFor="let language of languages"
-        class="language-option"
-        type="button"
-        role="menuitem"
-        (click)="selectLanguage(language)"
-      >
-        <span class="flag" aria-hidden="true">{{ getFlag(language) }}</span>
-        <span>{{ t('language.' + language) }}</span>
-      </button>
-    </div>
-  </div>
-
-  <header class="brand" aria-label="Kliimanova company branding">
-    <img class="brand-logo" src="/logo.png" alt="Kliimanova logo" />
-    <div class="brand-text">
-      <span class="brand-name">Kliimanova</span>
-      <span class="brand-tag">{{ t('brand.tag') }}</span>
-    </div>
-  </header>
-
   <main class="hero">
     <div class="hero-card">
       <h1>{{ t('hero.title') }}</h1>
@@ -52,32 +21,15 @@
         </span>
       </div>
       <div class="cta-group" role="group" aria-label="Primary actions">
-        <a class="cta" href="#">
+        <a class="cta" href="/">
           <span>{{ t('hero.cta.consultation') }}</span>
           <span class="cta-arrow" aria-hidden="true">→</span>
         </a>
-        <a class="cta secondary" href="#">
+        <a class="cta secondary" href="/projects">
           <span>{{ t('hero.cta.projects') }}</span>
           <span class="cta-arrow" aria-hidden="true">→</span>
         </a>
       </div>
-    </div>
-
-    <div class="copyright-toolbar">
-      <div>Contact us:
-        <i class="fa-brands fa-facebook"></i>
-        <i class="fa-brands fa-telegram"></i>
-        <i class="fa-brands fa-instagram"></i>
-        <i class="fa-brands fa-whatsapp"></i>
-        tel.: +38 000 000-00-00
-      </div>
-
-
-        <a href="https://www.facebook.com/kliimanova" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-
-        </a>
-
-      <div class="copyright">may-project &copy; 2026</div>
     </div>
   </main>
 </section>
