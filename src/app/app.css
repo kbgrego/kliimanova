@@ -31,7 +31,7 @@
 
 .language-switcher {
   position: absolute;
-  top: 1.5rem;
+  top: 2rem;
   right: 1.5rem;
   z-index: 3;
   display: flex;
@@ -93,6 +93,9 @@
 }
 
 @media (max-width: 640px) {
+  .page-shell {
+    padding-top: 60px;
+  }
   .language-switcher {
     top: 1rem;
     right: 1rem;
