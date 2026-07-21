@@ -106,6 +106,10 @@
   backdrop-filter: blur(12px);
 }
 
+.language-trigger .language-name {
+  display: inline-block;
+}
+
 .language-trigger:hover,
 .language-option:hover {
   transform: translateY(-2px);
@@ -300,6 +304,18 @@
   .language-switcher {
     top: 1rem;
     right: 1rem;
+    padding: 0;
+    gap: 0;
+  }
+
+  .language-trigger {
+    padding: 0.45rem;
+    min-width: 2.8rem;
+    justify-content: center;
+  }
+
+  .language-trigger .language-name {
+    display: none;
   }
 
   .brand-logo {
