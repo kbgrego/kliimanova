@@ -80,6 +80,65 @@
   font-family: 'Montserrat', 'Segoe UI', sans-serif;
 }
 
+.language-switcher {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.language-trigger,
+.language-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(8, 8, 8, 0.7);
+  color: #f7f7f2;
+  padding: 0.3rem 0.9rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  backdrop-filter: blur(12px);
+}
+
+.language-trigger:hover,
+.language-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+  background: rgba(20, 20, 20, 0.9);
+}
+
+.language-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.language-switcher.open .language-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.language-name {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.flag {
+  font-size: 1.15rem;
+}
+
 .hero {
   position: relative;
   z-index: 1;
@@ -238,6 +297,11 @@
     padding: 0.7rem 0.9rem;
   }
 
+  .language-switcher {
+    top: 1rem;
+    right: 1rem;
+  }
+
   .brand-logo {
     height: calc(1.8rem + 0.8rem);
     max-height: 2.8rem;
@@ -268,6 +332,7 @@
 
   .hero-card h1 {
     font-size: 2.2rem;
+    font-weight: 400;
   }
 
   .hero-subtitle {
