@@ -93,17 +93,13 @@
 }
 
 @media (max-width: 640px) {
-  .brand {
-    top: 1rem;
-    left: 1rem;
-    padding: 0.7rem 0.9rem;
-  }
-
   .language-switcher {
     top: 1rem;
     right: 1rem;
     padding: 0;
     gap: 0;
+    display: flex;
+    align-items: flex-end;
   }
 
   .language-trigger {
@@ -116,16 +112,4 @@
     display: none;
   }
 
-  .brand-logo {
-    height: calc(1.8rem + 0.8rem);
-    max-height: 2.8rem;
-  }
-
-  .brand-name {
-    font-size: 1.8rem;
-  }
-
-  .brand-tag {
-    font-size: 0.5rem;
-  }
 }

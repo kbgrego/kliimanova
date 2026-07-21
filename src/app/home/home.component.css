@@ -1,121 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
-.brand {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.9rem;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  backdrop-filter: none;
-  font-family: 'Montserrat';
-  font-weight: 800;
-}
-
-.brand-logo {
-  width: auto;
-  height: 4rem;
-  max-height: 4.2rem;
-  object-fit: cover;
-  flex-shrink: 0;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.brand-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
-}
-
-.brand-name {
-  font-size: 2rem;
-  font-weight: 100;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #f7f7f2;
-  line-height: 0.95;
-  letter-spacing: 0.16em;
-  font-family: 'Avenir Next';
-}
-
-.brand-tag {
-  margin-top: 0.2rem;
-  font-size: 0.5rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(247, 247, 242, 0.85);
-  font-family: 'Montserrat', 'Segoe UI', sans-serif;
-}
-
-.language-switcher {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
-.language-trigger,
-.language-option {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(8, 8, 8, 0.7);
-  color: #f7f7f2;
-  padding: 0.3rem 0.9rem;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-  backdrop-filter: blur(12px);
-}
-
-.language-trigger .language-name {
-  display: inline-block;
-}
-
-.language-trigger:hover,
-.language-option:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
-  background: rgba(20, 20, 20, 0.9);
-}
-
-.language-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  opacity: 0;
-  transform: translateY(-8px);
-  pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.language-switcher.open .language-menu {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.language-name {
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.flag {
-  font-size: 1.15rem;
-}
-
 .hero {
   position: relative;
   z-index: 1;
@@ -268,46 +152,9 @@
 }
 
 @media (max-width: 640px) {
-  .brand {
-    top: 1rem;
-    left: 1rem;
-    padding: 0.7rem 0.9rem;
-  }
-
-  .language-switcher {
-    top: 1rem;
-    right: 1rem;
-    padding: 0;
-    gap: 0;
-  }
-
-  .language-trigger {
-    padding: 0.45rem;
-    min-width: 2.8rem;
-    justify-content: center;
-  }
-
-  .language-trigger .language-name {
-    display: none;
-  }
-
-  .brand-logo {
-    height: calc(1.8rem + 0.8rem);
-    max-height: 2.8rem;
-  }
-
-  .brand-name {
-    font-size: 1.8rem;
-  }
-
-  .brand-tag {
-    font-size: 0.5rem;
-  }
-
   .hero {
     position: relative;
     min-height: 100vh;
-    padding: 5rem 1rem 1rem;
     align-items: flex-start;
     justify-content: flex-start;
   }
@@ -316,7 +163,6 @@
     width: 100%;
     max-width: 100%;
     padding: 1.5rem;
-    padding-bottom: 8.5rem;
   }
 
   .hero-card h1 {
@@ -344,7 +190,6 @@
     bottom: auto;
     width: 100%;
     justify-content: center;
-    margin-top: 14.5rem;
   }
 
   .cta {
