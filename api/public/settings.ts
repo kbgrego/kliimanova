@@ -1,14 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { neon } from '@neondatabase/serverless';
 
-const databaseUrl = process.env['DATABASE_URL'];
-
-if (!databaseUrl) {
-  throw new Error('DATABASE_URL is not configured');
-}
-
-const sql = neon(databaseUrl);
-
 export default async function handler(
   req: VercelRequest,
   res: VercelResponse
@@ -18,6 +10,15 @@ export default async function handler(
   }
 
   try {
+    const databaseUrl = process.env['DATABASE_URL'];
+
+    if (!databaseUrl) {
+      console.error('DATABASE_URL is missing');
+      return res.status(500).json({ message: 'Server configuration error' });
+    }
+
+    const sql = neon(databaseUrl);
+
     const rows = await sql`
       SELECT property, value
       FROM settings
@@ -39,7 +40,7 @@ export default async function handler(
         : {}
     });
   } catch (error) {
-    console.error('Unable to load settings:', error);
+    console.error('Settings API failed:', error);
 
     return res.status(500).json({
       message: 'Unable to load public settings'
