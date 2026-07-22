@@ -1,0 +1,68 @@
+<section class="page-shell">
+ <main class="request-card">
+    <header>
+      <p class="eyebrow">REQUEST A SERVICE</p>
+      <h1>How can we help?</h1>
+      <p class="intro">Tell us a little about your project and our team will contact you shortly.</p>
+    </header>
+
+    <form [formGroup]="requestForm" (ngSubmit)="submit()" novalidate>
+      <div class="form-grid">
+        <label class="field full">
+          <span>Request name</span>
+          <input formControlName="requestName" placeholder="e.g. New home installation"
+                 [class.invalid]="isInvalid('requestName')" />
+          <small *ngIf="isInvalid('requestName')">Please enter a request name.</small>
+        </label>
+
+        <label class="field full">
+          <span>Service required</span>
+          <select formControlName="service" [class.invalid]="isInvalid('service')">
+            <option value="" disabled>Select a service</option>
+            <option value="air-conditioning">Air conditioning</option>
+            <option value="heating">Heating</option>
+            <option value="heat-pumps">Heat pumps</option>
+          </select>
+          <small *ngIf="isInvalid('service')">Please select a service.</small>
+        </label>
+
+        <label class="field">
+          <span>Contact name</span>
+          <input formControlName="contactName" placeholder="Your full name"
+                 [class.invalid]="isInvalid('contactName')" />
+          <small *ngIf="isInvalid('contactName')">Please enter your name.</small>
+        </label>
+
+        <label class="field">
+          <span>Email address</span>
+          <input type="email" formControlName="email" placeholder="name@example.com"
+                 [class.invalid]="isInvalid('email')" />
+          <small *ngIf="isInvalid('email')">Enter a valid email address.</small>
+        </label>
+
+        <label class="field full">
+          <span>Property address</span>
+          <input formControlName="address" placeholder="Street, city, postcode"
+                 [class.invalid]="isInvalid('address')" />
+          <small *ngIf="isInvalid('address')">Please enter the service address.</small>
+        </label>
+      </div>
+
+      <div class="captcha-wrap">
+        <!-- Requires ng-recaptcha. Replace with your Google reCAPTCHA site key. -->
+        <re-captcha
+          siteKey="YOUR_GOOGLE_RECAPTCHA_SITE_KEY"
+          (resolved)="onCaptchaResolved($event)">
+        </re-captcha>
+        <small class="captcha-error" *ngIf="submitted && !captchaToken">
+          Please confirm that you are not a robot.
+        </small>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="cancel-btn" (click)="cancel()">Cancel</button>
+        <button type="submit" class="send-btn">Send request <span>→</span></button>
+      </div>
+    </form>
+  </main>
+</section>
