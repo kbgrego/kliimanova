@@ -1,11 +1,18 @@
-import { Component, inject, signal } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  PLATFORM_ID,
+  inject,
+  signal
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgIconsModule } from '@ng-icons/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslationService, type SupportedLanguage} from './services/translation.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ToolbarBottom } from "./control/toolbar-bottom/toolbar-bottom";
 import { BrandLogo } from "./control/brand-logo/brand-logo";
+import { SettingsService } from './core/settings/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +24,16 @@ export class App {
   protected readonly title = signal('kliimanova');
 
   protected readonly translationService = inject(TranslationService);
+  protected readonly settingsService = inject(SettingsService);
 
+  private readonly platformId = inject(PLATFORM_ID);
   protected readonly languages: SupportedLanguage[] = ['en', 'et', 'ru'];
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      void this.settingsService.load();
+    }
+  }
 
   protected get currentLanguage(): SupportedLanguage {
     return this.translationService.currentLanguage();

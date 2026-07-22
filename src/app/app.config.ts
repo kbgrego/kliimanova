@@ -14,7 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(),
     provideIcons({ heroCloudArrowDown, heroFire, heroArrowsUpDown }),
-    provideHttpClient(),
-    provideAppInitializer(() => inject(SettingsService).load())
+    provideHttpClient()
   ]
 };

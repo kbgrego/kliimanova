@@ -13,17 +13,21 @@ export class SettingsService {
   readonly settings = signal<PublicSettings>(DEFAULT_PUBLIC_SETTINGS);
 
   async load(): Promise<void> {
-    const apiSettings = await firstValueFrom(
-      this.http.get<Partial<PublicSettings>>('/api/public/settings')
-    );
+    try {
+      const apiSettings = await firstValueFrom(
+        this.http.get<Partial<PublicSettings>>('/api/public/settings')
+      );
 
-    this.settings.update(current => ({
-      ...current,
-      ...apiSettings,
-      social_links: {
-        ...current.social_links,
-        ...apiSettings.social_links
-      }
-    }));
+      this.settings.update(current => ({
+        ...current,
+        ...apiSettings,
+        social_links: {
+          ...current.social_links,
+          ...apiSettings.social_links
+        }
+      }));
+    } catch (error) {
+      console.error('Could not load public settings; using defaults.', error);
+    }
   }
 }
