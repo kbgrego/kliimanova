@@ -227,6 +227,24 @@ button {
   font-size: 18px;
 }
 
+button:disabled {
+  cursor: wait;
+  opacity: .7;
+}
+
+.form-status {
+  margin: 18px 0 0;
+  font-size: 13px;
+}
+
+.form-status.success {
+  color: #86d69a;
+}
+
+.form-status.error {
+  color: #f48c8c;
+}
+
 footer {
   right: 20px;
   bottom: 14px;

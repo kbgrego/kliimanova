@@ -10,7 +10,7 @@ export default async function handler(
   }
 
   try {
-    const databaseUrl = process.env['DATABASE_URL'];
+    const databaseUrl = process.env['KLIIMANOVA_DATABASE_URL'];
 
     if (!databaseUrl) {
       console.error('DATABASE_URL is missing');

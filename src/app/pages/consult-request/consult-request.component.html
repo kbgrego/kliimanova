@@ -48,8 +48,9 @@
         </label>
       </div>
 
+      <!--
+
       <div class="captcha-wrap">
-        <!-- Requires ng-recaptcha. Replace with your Google reCAPTCHA site key. -->
         <re-captcha
           siteKey="YOUR_GOOGLE_RECAPTCHA_SITE_KEY"
           (resolved)="onCaptchaResolved($event)">
@@ -59,10 +60,21 @@
         </small>
       </div>
 
+      -->
+
       <div class="actions">
         <button type="button" class="cancel-btn" (click)="cancel()">Cancel</button>
-        <button type="submit" class="send-btn">Send request <span>→</span></button>
+        <button type="submit" class="send-btn" [disabled]="isSending">
+          {{ isSending ? 'Sending…' : 'Send request' }} <span>→</span>
+        </button>
       </div>
+
+      <p class="form-status success" *ngIf="notificationSent" role="status">
+        Your request has been sent. We will contact you shortly.
+      </p>
+      <p class="form-status error" *ngIf="notificationError" role="alert">
+        We could not send your request. Please try again.
+      </p>
     </form>
   </main>
 </section>

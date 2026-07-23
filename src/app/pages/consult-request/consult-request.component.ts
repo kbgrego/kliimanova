@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RecaptchaModule } from 'ng-recaptcha-2';
+import { TelegramService } from '../../services/telegram.service';
 
 @Component({
   selector: 'app-consult-request',
@@ -12,9 +13,15 @@ import { RecaptchaModule } from 'ng-recaptcha-2';
 export class ConsultRequestComponent {
   submitted = false;
   captchaToken: string | null = null;
+  isSending = false;
+  notificationSent = false;
+  notificationError = false;
   requestForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly telegram: TelegramService
+  ) {
     this.requestForm = this.fb.group({
       requestName: ['', Validators.required],
       service: ['', Validators.required],
@@ -33,13 +40,36 @@ export class ConsultRequestComponent {
     this.captchaToken = token;
   }
 
-  submit(): void {
+  async submit(): Promise<void> {
     this.submitted = true;
     this.requestForm.markAllAsTouched();
 
-    if (this.requestForm.invalid || !this.captchaToken) return;
+    if (this.requestForm.invalid || this.isSending) return;
 
-    // Submit data here
+    this.isSending = true;
+    this.notificationError = false;
+
+    const { requestName, service, contactName, email, address } = this.requestForm.getRawValue();
+    const message = [
+      'New consultation request',
+      `Request: ${requestName}`,
+      `Service: ${service}`,
+      `Contact: ${contactName}`,
+      `Email: ${email}`,
+      `Address: ${address}`
+    ].join('\n');
+
+    try {
+      await this.telegram.sendNotification(message);
+      this.notificationSent = true;
+      this.requestForm.reset();
+      this.submitted = false;
+    } catch (error) {
+      console.error('Could not send consultation notification.', error);
+      this.notificationError = true;
+    } finally {
+      this.isSending = false;
+    }
   }
 
   cancel(): void {
@@ -47,6 +77,8 @@ export class ConsultRequestComponent {
       this.requestForm.reset();
       this.captchaToken = null;
       this.submitted = false;
+      this.notificationSent = false;
+      this.notificationError = false;
     }
   }
 }

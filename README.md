@@ -12,6 +12,18 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
+## Telegram notifications
+
+Consultation requests are sent to Telegram through the Vercel function at `/api/telegram`.
+Set these Vercel environment variables for every deployment environment:
+
+```text
+TELEGRAM_BOT_TOKEN=your-bot-token
+TELEGRAM_ADMIN_CHAT=your-admin-chat-id
+```
+
+The bot token is only read by the Vercel function and is never included in the Angular client bundle.
+
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
