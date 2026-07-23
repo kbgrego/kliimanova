@@ -24,9 +24,83 @@
 .brand,
 .language-switcher,
 .social-links,
-.hero {
+.hero,
+.route-content {
   position: relative;
   z-index: 1;
+}
+
+.site-navigation {
+  position: absolute;
+  z-index: 4;
+  top: 2rem;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  min-height: 3.15rem;
+  padding: 0.3rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(5, 10, 18, 0.58);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22), inset 0 1px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px) saturate(130%);
+  transform: translateX(-50%);
+  animation: navigation-enter 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.navigation-links {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.navigation-links a {
+  position: relative;
+  isolation: isolate;
+  padding: 0.68rem 1rem;
+  border-radius: 999px;
+  color: rgba(247, 247, 242, 0.78);
+  font-family: 'Montserrat', 'Segoe UI', sans-serif;
+  font-size: 0.69rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navigation-links a::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #e7f4ff, #a9d8ff);
+  box-shadow: 0 5px 18px rgba(127, 202, 255, 0.28);
+  content: '';
+  opacity: 0;
+  transform: scale(0.72);
+  transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navigation-links a:hover,
+.navigation-links a:focus-visible {
+  color: #fff;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.navigation-links a.active {
+  color: #09213b;
+}
+
+.navigation-links a.active::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.navigation-toggle {
+  display: none;
 }
 
 .language-switcher {
@@ -92,10 +166,111 @@
   font-size: 1.15rem;
 }
 
+@keyframes navigation-enter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -1rem) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-navigation,
+  .navigation-links a,
+  .navigation-links a::before {
+    animation: none;
+    transition-duration: 0.01ms;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-navigation {
+    top: 1rem;
+    left: 1rem;
+    display: block;
+    min-height: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 1rem;
+    transform: none;
+  }
+
+  .navigation-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 6.7rem;
+    padding: 0.72rem 0.85rem;
+    border: 0;
+    background: transparent;
+    color: #f7f7f2;
+    cursor: pointer;
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .hamburger,
+  .hamburger i {
+    display: block;
+  }
+
+  .hamburger {
+    position: relative;
+    width: 1rem;
+    height: 0.8rem;
+  }
+
+  .hamburger i {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transition: transform 0.28s ease, top 0.28s ease;
+  }
+
+  .hamburger i:first-child { top: 0.22rem; }
+  .hamburger i:last-child { top: 0.62rem; width: 0.65rem; }
+
+  .site-navigation.open .hamburger i:first-child { top: 0.42rem; transform: rotate(45deg); }
+  .site-navigation.open .hamburger i:last-child { top: 0.42rem; width: 100%; transform: rotate(-45deg); }
+
+  .navigation-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 11rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-0.4rem);
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, transform 0.35s ease, padding 0.35s ease;
+  }
+
+  .site-navigation.open .navigation-links {
+    max-height: 14rem;
+    padding: 0.2rem 0.3rem 0.35rem;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .navigation-links a {
+    padding: 0.66rem 0.75rem;
+  }
+}
+
 @media (max-width: 640px) {
   .page-shell {
     padding-top: 60px;
   }
+
   .language-switcher {
     top: 1rem;
     right: 1rem;

@@ -5,7 +5,7 @@ import {
   inject,
   signal
 } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NgIconsModule } from '@ng-icons/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslationService, type SupportedLanguage} from './services/translation.service';
@@ -16,12 +16,22 @@ import { SettingsService } from './core/settings/settings.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NgIconsModule, FontAwesomeModule, CommonModule, ToolbarBottom, BrandLogo],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    NgIconsModule,
+    FontAwesomeModule,
+    CommonModule,
+    ToolbarBottom,
+    BrandLogo
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('kliimanova');
+  protected readonly isNavigationOpen = signal(false);
 
   protected readonly translationService = inject(TranslationService);
   protected readonly settingsService = inject(SettingsService);
@@ -57,5 +67,13 @@ export class App {
 
   protected toggleMenu(): void {
     this.translationService.toggleMenu();
+  }
+
+  protected toggleNavigation(): void {
+    this.isNavigationOpen.update((isOpen) => !isOpen);
+  }
+
+  protected closeNavigation(): void {
+    this.isNavigationOpen.set(false);
   }
 }

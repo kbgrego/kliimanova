@@ -51,9 +51,9 @@
   font-family: 'Montserrat', 'Segoe UI', sans-serif;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .brand {
-    top: 1rem;
+    top: 4.8rem;
     left: 1rem;
     padding: 0.7rem 0.9rem;
   }
