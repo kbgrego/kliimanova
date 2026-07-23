@@ -17,7 +17,7 @@ export default async function handler(
     return;
   }
 
-  if (req.headers['sec-key'] !== process.env['TELEGRAM_SECRET_KEY']) {
+  if (req.cookies['sec-key'] !== process.env['TELEGRAM_SECRET_KEY']) {
     res.status(401).json({ message: 'Unauthorized' });
     return;
   }
