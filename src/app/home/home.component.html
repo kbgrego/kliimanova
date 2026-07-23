@@ -31,5 +31,17 @@
         </a>
       </div>
     </div>
+
+    <nav class="social-links" aria-label="Social media">
+      @if (settings().social_links?.facebook; as facebook) {
+        <a class="social-link fa-brands fa-facebook-f" [href]="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"></a>
+      }
+      @if (settings().social_links?.instagram; as instagram) {
+        <a class="social-link fa-brands fa-instagram" [href]="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"></a>
+      }
+      @if (settings().social_links?.whatsapp; as whatsapp) {
+        <a class="social-link fa-brands fa-whatsapp" [href]="whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"></a>
+      }
+    </nav>
   </main>
 </section>
