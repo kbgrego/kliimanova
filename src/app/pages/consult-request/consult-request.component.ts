@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RecaptchaModule } from 'ng-recaptcha-2';
-import { TelegramService } from '../../services/telegram.service';
+import { RequestEntry } from '../../core/request/request.model';
+import { RequestService } from '../../services/request.service';
 
 @Component({
   selector: 'app-consult-request',
@@ -20,7 +21,8 @@ export class ConsultRequestComponent {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly telegram: TelegramService
+
+    private readonly request: RequestService
   ) {
     this.requestForm = this.fb.group({
       requestName: ['', Validators.required],
@@ -50,17 +52,18 @@ export class ConsultRequestComponent {
     this.notificationError = false;
 
     const { requestName, service, contactName, email, address } = this.requestForm.getRawValue();
-    const message = [
-      'New consultation request',
-      `Request: ${requestName}`,
-      `Service: ${service}`,
-      `Contact: ${contactName}`,
-      `Email: ${email}`,
-      `Address: ${address}`
-    ].join('\n');
+
+    const re: RequestEntry = {
+      CaptchaToken: this.captchaToken || undefined,
+      Name: requestName,
+      Service: service,
+      ContactName: contactName,
+      Email: email,
+      Address: address
+    }
 
     try {
-      await this.telegram.sendNotification(message);
+      await this.request.submitRequest(re);
       this.notificationSent = true;
       this.requestForm.reset();
       this.submitted = false;
