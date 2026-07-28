@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { z } from 'zod';
-import { RequestProcessor } from '../../server/services/request-processor';
+import { RequestProcessor } from '../server/services/request-processor';
 
 const RequestPayloadSchema = z.object({
   CaptchaToken: z.string().optional(),

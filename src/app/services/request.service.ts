@@ -10,7 +10,7 @@ export class RequestService {
   private http = inject(HttpClient);
 
   // Endpoint relative to the same host (Vercel routes automatically)
-  private readonly apiUrl = '/api/request';
+  private readonly apiUrl = '/api/public/request';
 
   // Reactive state for loading indicators
   readonly isLoading = signal<boolean>(false);

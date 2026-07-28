@@ -6,6 +6,9 @@ export class TelegramService {
     const token = process.env['TELEGRAM_BOT_TOKEN'];
     const chatId = process.env['TELEGRAM_ADMIN_CHAT'];
 
+    if(message.length > TELEGRAM_MESSAGE_LIMIT)
+      return;
+
     if (!token || !chatId) {
       console.error('Telegram notification environment variables are missing');
       return;
