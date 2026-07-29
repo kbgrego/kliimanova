@@ -15,7 +15,7 @@ export class RequestProcessor {
     // 2. Perform actions (e.g., store in database, trigger notification)
     const id = await this.saveToDatabase(data);
 
-    TelegramService.sendNotification(
+    const telRsult = await TelegramService.sendNotification(
       'New consultation request' +
       'Request: ' + this.escapeMarkdown(data.Name) +
       'Service: ' + this.escapeMarkdown(data.Service) +
@@ -24,11 +24,19 @@ export class RequestProcessor {
       'Address: ' + this.escapeMarkdown(data.Address)
     );
 
-    return {
-      requestId: id,
-      status: 'PROCESSED',
-      timestamp: new Date().toISOString(),
-    };
+    if (telRsult) {
+      return {
+        requestId: id,
+        status: 'PROCESSED',
+        timestamp: new Date().toISOString(),
+      };
+    } else {
+      return {
+        requestId: id,
+        status: 'FAILED',
+        timestamp: new Date().toISOString(),
+      }
+    }
   }
 
   private logIncoming(data: RequestEntry): void {

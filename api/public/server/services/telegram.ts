@@ -2,16 +2,16 @@ const TELEGRAM_MESSAGE_LIMIT = 4096;
 
 export class TelegramService {
 
-  static async sendNotification(message: string): Promise<void> {
+  static async sendNotification(message: string): Promise<boolean> {
     const token = process.env['TELEGRAM_BOT_TOKEN'];
     const chatId = process.env['TELEGRAM_ADMIN_CHAT'];
 
     if(message.length > TELEGRAM_MESSAGE_LIMIT)
-      return;
+      return false;
 
     if (!token || !chatId) {
       console.error('Telegram notification environment variables are missing');
-      return;
+      return false;
     }
 
     try {
@@ -27,10 +27,13 @@ export class TelegramService {
 
       if (!response.ok) {
         console.error('Telegram API rejected notification:', response.status, await response.text());
-        return;
+        return false;
       }
+
+      return true;
     } catch (error) {
       console.error('Telegram notification failed:', error);
     }
+    return false;
   }
 }
