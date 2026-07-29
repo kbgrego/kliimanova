@@ -17,6 +17,12 @@ export class PricesComponent {
 
   }
 
+  ngOnInit() {
+    this.pricingService
+      .loadPricing('HEATING_PIPES')
+      .subscribe();
+  }
+
   protected t(key: string): string {
     return this.translationService.translate(key);
   }
