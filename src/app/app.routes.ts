@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { Projects } from './pages/projects/projects';
 import { ConsultRequestComponent } from './pages/consult-request/consult-request.component';
+import { PricesComponent } from './pages/prices/prices.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -12,5 +13,6 @@ export const routes: Routes = [
   },
   { path: 'projects', component: Projects },
   { path: 'request', component: ConsultRequestComponent },
+  { path: 'prices', component: PricesComponent },
   { path: '**', redirectTo: 'home' }
 ];

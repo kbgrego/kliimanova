@@ -68,13 +68,12 @@ export class ConsultRequestComponent {
           console.log(response);
           if (!response.success) {
             this.notificationError = true;
-            this.notificationSent = false;
+            this.notificationSent = true;
           }
         },
         error: err => {
           console.log(err);
           this.notificationError = true;
-          this.notificationSent = false;
         }
       });
       this.notificationSent = true;
