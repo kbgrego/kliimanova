@@ -1,7 +1,7 @@
 // api/admin/projects.ts
 
 export default async function handler(req: any, res: any) {
-  const admin = await requireAdmin(req); // Verify an HttpOnly session cookie or JWT.
+  const admin =  false; // await requireAdmin(req); // Verify an HttpOnly session cookie or JWT.
 
   if (!admin) {
     return res.status(401).json({ message: 'Unauthorized' });
@@ -11,6 +11,7 @@ export default async function handler(req: any, res: any) {
   const limit = Math.min(Math.max(Number(req.query['limit'] ?? 20), 1), 100);
   const offset = (page - 1) * limit;
 
+  /*
   const projects = await sql`
     SELECT
       id,
@@ -29,10 +30,13 @@ export default async function handler(req: any, res: any) {
     OFFSET ${offset}
   `;
 
+
   const totalRows = await sql`SELECT COUNT(*)::int AS total FROM projects`;
 
   return res.status(200).json({
     projects,
     total: totalRows[0]['total']
   });
+  */
+  return res.status(500).json({ message: 'Unkonwn' });
 }
