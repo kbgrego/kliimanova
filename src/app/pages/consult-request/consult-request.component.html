@@ -65,7 +65,7 @@
         </button>
       </div>
 
-      <p class="form-status success" *ngIf="notificationSent" role="status">
+      <p class="form-status success" *ngIf="!notificationError" role="status">
         Your request has been sent. We will contact you shortly.
       </p>
       <p class="form-status error" *ngIf="notificationError" role="alert">

@@ -63,7 +63,20 @@ export class ConsultRequestComponent {
     }
 
     try {
-      await this.request.submitRequest(re);
+      this.request.submitRequest(re).subscribe({
+        next: response => {
+          console.log(response);
+          if (!response.success) {
+            this.notificationError = true;
+            this.notificationSent = false;
+          }
+        },
+        error: err => {
+          console.log(err);
+          this.notificationError = true;
+          this.notificationSent = false;
+        }
+      });
       this.notificationSent = true;
       this.requestForm.reset();
       this.submitted = false;

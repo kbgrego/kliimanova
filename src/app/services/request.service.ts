@@ -1,6 +1,6 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, finalize, throwError } from 'rxjs';
+import { Observable, catchError, finalize, tap, throwError } from 'rxjs';
 import { RequestEntry, ServiceRequestResponse } from '../core/request/request.model';
 
 @Injectable({
@@ -21,9 +21,19 @@ export class RequestService {
   submitRequest(payload: RequestEntry): Observable<ServiceRequestResponse> {
     this.isLoading.set(true);
 
+    console.log('Submitting request payload:', payload);
+
     return this.http.post<ServiceRequestResponse>(this.apiUrl, payload).pipe(
+      tap({
+        subscribe: () => console.log('Subscribed'),
+        next: res => console.log('Response', res),
+        error: err => console.log('HTTP error', err)
+      }),
       catchError(this.handleError),
-      finalize(() => this.isLoading.set(false))
+      finalize(() => {
+        console.log('Finalize');
+        this.isLoading.set(false);
+      })
     );
   }
 
@@ -32,6 +42,8 @@ export class RequestService {
    */
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unexpected error occurred.';
+
+    console.log(error);
 
     if (error.error instanceof ErrorEvent) {
       // Client-side or network error
