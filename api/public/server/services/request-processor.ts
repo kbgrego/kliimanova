@@ -17,11 +17,11 @@ export class RequestProcessor {
 
     const telRsult = await TelegramService.sendNotification(
       'New consultation request \n' +
-      'Request: ' + this.escapeMarkdown(data.Name) +
-      'Service: ' + this.escapeMarkdown(data.Service) +
-      'Contact: ' + this.escapeMarkdown(data.ContactName) +
-      'Email: ' + this.escapeMarkdown(data.Email) +
-      'Address: ' + this.escapeMarkdown(data.Address)
+      'Request: ' + this.escapeMarkdown(data.Name) + '\n' +
+      'Service: ' + this.escapeMarkdown(data.Service) + '\n' +
+      'Contact: ' + this.escapeMarkdown(data.ContactName) + '\n' +
+      'Email: ' + this.escapeMarkdown(data.Email) + '\n' +
+      'Address: ' + this.escapeMarkdown(data.Address) 
     );
 
     if (telRsult) {
