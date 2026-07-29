@@ -1,5 +1,5 @@
-import { RequestEntry, ProcessResult } from '../models/request.model';
-import { TelegramService } from './telegram';
+import { RequestEntry, ProcessResult } from '../models/request.model.js';
+import { TelegramService } from './telegram.js';
 
 export class RequestProcessor {
   private category: string;
