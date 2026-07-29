@@ -16,7 +16,7 @@ export class RequestProcessor {
     const id = await this.saveToDatabase(data);
 
     const telRsult = await TelegramService.sendNotification(
-      'New consultation request' +
+      'New consultation request \n' +
       'Request: ' + this.escapeMarkdown(data.Name) +
       'Service: ' + this.escapeMarkdown(data.Service) +
       'Contact: ' + this.escapeMarkdown(data.ContactName) +
