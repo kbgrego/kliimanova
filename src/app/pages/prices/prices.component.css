@@ -281,13 +281,13 @@ i.hot-price {
 
 .price-card-footer {
   right: 15px;
-  margin: 1.5rem;
+  margin: 1.5rem 0.7rem;
   display: flex;
   position: relative;
   width: 870px;
   height: 220px;
   border-radius: 1rem;
-  color: #f7f7f2;
+  color: #fff;
   padding: 1rem 2rem;
   border: 1px solid rgba(247, 247, 242, 0.16);
   background: rgba(5, 5, 5, 0.55);
@@ -320,11 +320,51 @@ i.hot-price {
 }
 
 .price-card-footer ul li i{
+  color: hsla(60, 24%, 96%, 0.763);
   margin: 4px;
   width: 24px;
   height: 24px;
   font-size: 24px;
 }
+
+.price-card-footer.equipment {
+  width: 600px;
+}
+
+.price-card-footer.equipment .price-card-footer-title {
+  color: #2973f2;
+  text-transform: uppercase;
+}
+
+.price-card-footer.equipment ul {
+  margin: 5px;
+  display: flex;
+  font-size: 10px;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-content: center;
+  justify-content: ceenter;
+  align-items: flex-start;
+}
+
+.price-card-footer.equipment ul li{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 152px;
+    height: auto;
+    text-align: center;
+    /* height: 130px; */
+}
+
+.price-card-footer.equipment ul li i{
+  margin: 2px;
+  width: 52px;
+  height: 46px;
+  font-size: 45px;
+}
+
 
 @media (max-width: 640px) {
   .hero {
