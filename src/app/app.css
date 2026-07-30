@@ -169,9 +169,11 @@
 .hero-navi {
   position: fixed;
   /* left: 10px; */
-  top: 9rem;
+  top: 6rem;
   padding: 0 3rem;
   color: #255cce;
+  font-size: 22px;
+  letter-spacing: 4px;
   text-transform: uppercase;
 }
 
