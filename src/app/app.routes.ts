@@ -11,8 +11,8 @@ export const routes: Routes = [
     path: 'maintenance',
     loadChildren: () => import('./maintenance/maintenance.module').then((m) => m.MaintenanceModule)
   },
-  { path: 'projects', component: Projects },
-  { path: 'request', component: ConsultRequestComponent },
-  { path: 'prices', component: PricesComponent },
+  { path: 'projects', component: Projects, data: { pageName: 'Projects' } },
+  { path: 'request', component: ConsultRequestComponent, data: { pageName: '' } },
+  { path: 'prices', component: PricesComponent, data: { pageName: 'Pricing' } },
   { path: '**', redirectTo: 'home' }
 ];

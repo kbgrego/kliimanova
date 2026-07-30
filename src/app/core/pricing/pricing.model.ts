@@ -8,6 +8,7 @@ export interface PricingItem {
   duration_hours?: number;
   recommended: boolean;
   display_order: number;
+  water: boolean;
 }
 
 export interface PricingResponse {

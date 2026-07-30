@@ -173,6 +173,12 @@ small {
   font-weight: 500;
 }
 
+.request-card .bottom-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .captcha-wrap {
   margin-top: 24px;
 }
@@ -195,7 +201,7 @@ button {
   justify-content: center;
   gap: 0.6rem;
   font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  padding: 0.4rem 2.4rem;
+  padding: 0.4rem 1.9rem;
   border: 2px solid #12223a;
   border-radius: 10px;
   background: #050505;
@@ -255,11 +261,13 @@ footer {
   font-size: 13px;
 }
 
-@media (max-width: 620px) {
+@media (max-width: 900px) {
+  .page-shell { padding: 1rem; }
   .request-page { padding: 100px 16px 80px; }
   .brand { top: 20px; left: 20px; }
   .brand-name { font-size: 18px; }
-  .request-card { padding: 28px 20px; }
+  .request-card { margin-top: 5rem; padding: 28px 20px; }
+  .request-card .bottom-panel { display: block; gap: 12px; }
   .form-grid { grid-template-columns: 1fr; }
   .field.full { grid-column: auto; }
   footer { font-size: 11px; }

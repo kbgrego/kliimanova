@@ -11,7 +11,7 @@ export class PricingService {
 
   private readonly http = inject(HttpClient);
 
-  private readonly apiUrl = '/api/public/pricing';
+  private readonly apiUrl = 'https://kliimanova.vercel.app/api/public/price';
 
 
   private readonly _pricing = signal<PricingItem[]>([]);

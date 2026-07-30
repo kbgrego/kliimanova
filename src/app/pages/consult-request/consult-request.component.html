@@ -48,24 +48,27 @@
         </label>
       </div>
 
-      <div class="captcha-wrap">
-        <re-captcha
-          siteKey="6LdwfGktAAAAAMuk_dm1IukXFzHpPazo_eoGowBb"
-          (resolved)="onCaptchaResolved($event)">
-        </re-captcha>
-        <small class="captcha-error" *ngIf="submitted && !captchaToken">
-          Please confirm that you are not a robot.
-        </small>
+      <div class="bottom-panel">
+        <div class="captcha-wrap">
+          <re-captcha
+            theme="dark"
+            siteKey="6LdwfGktAAAAAMuk_dm1IukXFzHpPazo_eoGowBb"
+            (resolved)="onCaptchaResolved($event)">
+          </re-captcha>
+          <small class="captcha-error" *ngIf="submitted && !captchaToken">
+            Please confirm that you are not a robot.
+          </small>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="cancel-btn" (click)="cancel()">Cancel</button>
+          <button type="submit" class="send-btn" [disabled]="isSending">
+            {{ isSending ? 'Sending…' : 'Send request' }} <span>→</span>
+          </button>
+        </div>
       </div>
 
-      <div class="actions">
-        <button type="button" class="cancel-btn" (click)="cancel()">Cancel</button>
-        <button type="submit" class="send-btn" [disabled]="isSending">
-          {{ isSending ? 'Sending…' : 'Send request' }} <span>→</span>
-        </button>
-      </div>
-
-      <p class="form-status success" *ngIf="!notificationError" role="status">
+      <p class="form-status success" *ngIf="!notificationError && notificationSent" role="status">
         Your request has been sent. We will contact you shortly.
       </p>
       <p class="form-status error" *ngIf="notificationError" role="alert">

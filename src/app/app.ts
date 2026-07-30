@@ -5,7 +5,8 @@ import {
   inject,
   signal
 } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { NgIconsModule } from '@ng-icons/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslationService, type SupportedLanguage} from './services/translation.service';
@@ -38,6 +39,25 @@ export class App {
 
   private readonly platformId = inject(PLATFORM_ID);
   protected readonly languages: SupportedLanguage[] = ['en', 'et', 'ru'];
+
+  pageName = '';
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        let current = this.route;
+
+        while (current.firstChild) {
+          current = current.firstChild;
+        }
+
+        this.pageName = current.snapshot.data['pageName'];
+      });
+  }
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {

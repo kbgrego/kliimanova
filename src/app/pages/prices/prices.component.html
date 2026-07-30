@@ -1,30 +1,76 @@
 <section class="page-shell">
-  <main class="hero">    
+  <main class="hero">
+    <div class="hero-navi">pricing</div>
     <div class="hero-card">
       <p class="hero-menu-path"></p>
       <h1>Standard installation</h1>
       <p class="hero-subtitle">
-        Professional installation from <i class="hot-price">{{ getBasicPrice() }}</i>
+        Professional installation from <i class="hot-price">@if (getBasicPrice(); as price) { {{ price }}€ }</i>
       </p>
     </div>
-
+    <div class="price-carusel">
+  @for (item of pricing(); track item.package_code) {
     <div class="price-card">
-      <h2>HEATING ONLY</h2>
-      <h5>warm floors or radiators</h5>
-      <i class="from">from</i><div class="price">1150 €</div>
-      <h3> IN THE PRICE:</h3>
-      <ul>
-      <li>Outdoor & indoor unit installation</li>
-      <li>Connection to existing heating system</li>
-      <li>Hydraulic connection</li>
-      <li>Standard connection installation</li>
-      <li>Refrigerant piping</li>
-      <li>System vacuuming</li>
-      <li>Leak test</li>
-      <li>Connecting of communications</li>
-      <li>System filling and air purging Equipment setup and start-up</li>
+      <div class="price-card-header">
+        <div class="wc price-card-icon">
+
+          @if (item.package_code == 'BASIC') {
+            <i class="fa-solid fa-fire-flame-curved"></i>
+          }
+          @else if (item.package_code == 'STANDARD') {
+          <i class="fa-solid fa-temperature-arrow-up"></i>
+          } @else {
+          <i class="fa-solid fa-house-fire"></i>
+          }
+        </div>
+
+        <div class="price-card-title">
+          <h2>{{ item.package_name }}</h2>
+          <h5>{{ item.description }}</h5>
+        </div>
+      </div>
+
+      <div class="price-divider"></div>
+
+      <div class="price-section">
+        <span class="from">from</span>
+        <span class="wc price">{{ this.utils.formatWithSpaces(item.price) }} €</span>
+      </div>
+
+      <h3 class="wc" >INCLUDED IN THE PRICE:</h3>
+
+
+      <ul class="features wc">
+        @if (item.package_code == 'BASIC') {
+        <li>Outdoor & indoor unit installation</li>
+        <li>Connection to existing heating system</li>
+        <li>Hydraulic connection</li>
+        <li>Standard connection installation</li>
+        <li>Refrigerant piping</li>
+        <li>System vacuuming</li>
+        <li>Leak test</li>
+        <li>Connecting of communications</li>
+        <li>System filling and air purging</li>
+        <li>Equipment setup and start-up</li>
+        } @else if (item.package_code == 'STANDART') {
+          <li>Everything from the standard package </li>
+          <li>3-way valve installation and connection </li>
+          <li>Heating / DHW switching setup</li>
+          <li>Hot water heating operation check</li>
+        } @else {
+          <li>Everything from the previous package</li>
+          <li>Buffer tank connection</li>
+          <li>Additional hydraulic installation</li>
+          <li>System setup with buffer tank</li>
+        }
       </ul>
-      <button>REQUEST QUOTE</button>      
+
+      <button class="quote-btn wc">
+        REQUEST QUOTE
+        <span>→</span>
+      </button>
+    </div>
+  }
     </div>
   </main>
 </section>
