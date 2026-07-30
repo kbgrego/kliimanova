@@ -60,6 +60,8 @@ i.hot-price {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .price-card {
@@ -93,18 +95,27 @@ i.hot-price {
     color:#f28b29;
     font-size:42px;
     border-right:1px solid rgba(255,255,255,.12);
-
     background: linear-gradient(
         180deg,
         #ffb067,
         #f28b29
     );
-
     -webkit-background-clip: text;
     background-clip: text;
-
     -webkit-text-fill-color: transparent;
 }
+
+.price-card-icon.water-color {
+  background: linear-gradient(
+      180deg,
+      #6195ee,
+      #2973f2
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 
 .price-card-title h2{
     margin:0;
@@ -162,11 +173,20 @@ i.hot-price {
         #ffb067,
         #f28b29
     );
-
     -webkit-background-clip: text;
     background-clip: text;
-
     -webkit-text-fill-color: transparent;
+}
+
+.price.water-color {
+  background: linear-gradient(
+      180deg,
+      #6195ee,
+      #2973f2
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Title */
@@ -217,7 +237,7 @@ i.hot-price {
 /* Button */
 
 .quote-btn{
-    width:100%;
+    width: calc(100% - 70px);
     height:32px;
     background:transparent;
     color:#fff;
@@ -231,10 +251,13 @@ i.hot-price {
     align-items:center;
     gap:18px;
     transition:.25s;
+    position: fixed;
+    bottom: 20px;
 }
 
 .quote-btn.water-color{
     border:1px solid #2973f2;
+    color:#fff;
 }
 
 .quote-btn span{
@@ -260,6 +283,14 @@ i.hot-price {
 }
 
 @media (max-width: 640px) {
+  .hero {
+    padding: 1rem 1rem 1rem 1rem;
+  }
+
+  .hero-card {
+    padding: 5.5rem 0 1.5rem 0;
+  }
+  
   .price-carusel {
     display: flex;
     flex-direction: column;

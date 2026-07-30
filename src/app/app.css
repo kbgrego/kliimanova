@@ -324,6 +324,10 @@
 
   }
 
+  .overlay {
+    position: fixed;
+  }
+
   .page-shell {
     padding-top: 60px;
     overflow: auto;
