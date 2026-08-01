@@ -1,44 +1,53 @@
 <section class="page-shell">
   <div class="overlay"></div>
 
-  <nav class="site-navigation" [class.open]="isNavigationOpen()" aria-label="Primary navigation">
+  <nav class="site-navigation"
+      [class.open]="isNavigationOpen()"
+      aria-label="Primary navigation">
+
     <button
-      class="navigation-toggle"
-      type="button"
-      [attr.aria-expanded]="isNavigationOpen()"
-      aria-controls="primary-navigation-links"
-      (click)="toggleNavigation()"
-    >
-      <span class="hamburger" aria-hidden="true"><i></i><i></i><i></i></span>
+        class="navigation-toggle"
+        type="button"
+        [attr.aria-expanded]="isNavigationOpen()"
+        (click)="toggleNavigation()">
+        <span class="hamburger">
+            <i></i><i></i><i></i>
+        </span>
     </button>
 
     <div class="navigation-links" id="primary-navigation-links">
-      <a routerLink="/home" routerLinkActive="active" (click)="closeNavigation()">{{ t('nav.home') }}</a>
-      <a routerLink="/projects" routerLinkActive="active" (click)="closeNavigation()">{{ t('nav.projects') }}</a>
-      <a routerLink="/request" routerLinkActive="active" (click)="closeNavigation()">{{ t('nav.consultation') }}</a>
-      <a routerLink="/prices" routerLinkActive="active" (click)="closeNavigation()">{{ t('nav.prices') }}</a>
+        <a #navItem
+          routerLink="/home"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}"
+          (click)="closeNavigation()">
+            {{ t('nav.home') }}
+        </a>
+        <a #navItem
+          routerLink="/projects"
+          routerLinkActive="active"
+          (click)="closeNavigation()">
+            {{ t('nav.projects') }}
+        </a>
+        <a #navItem
+          routerLink="/request"
+          routerLinkActive="active"
+          (click)="closeNavigation()">
+            {{ t('nav.consultation') }}
+        </a>
+        <a #navItem
+          routerLink="/prices"
+          routerLinkActive="active"
+          (click)="closeNavigation()">
+            {{ t('nav.prices') }}
+        </a>
+
+        <!-- animated underline -->
+        <span #navIndicator class="nav-indicator"></span>
     </div>
   </nav>
 
-  <div class="language-switcher" [class.open]="isMenuOpen">
-    <button class="language-trigger" type="button" (click)="toggleMenu()" [attr.aria-label]="t('language.label')">
-      <span class="flag" aria-hidden="true">{{ getFlag(currentLanguage) }}</span>
-      <span class="language-name">{{ t('language.' + currentLanguage) }}</span>
-    </button>
-
-    <div class="language-menu" role="menu" aria-label="Language options">
-      <button
-        *ngFor="let language of languages"
-        class="language-option"
-        type="button"
-        role="menuitem"
-        (click)="selectLanguage(language)"
-      >
-        <span class="flag" aria-hidden="true">{{ getFlag(language) }}</span>
-        <span>{{ t('language.' + language) }}</span>
-      </button>
-    </div>
-  </div>
+  <app-language-selec></app-language-selec>
 
   <app-brand-logo></app-brand-logo>
 

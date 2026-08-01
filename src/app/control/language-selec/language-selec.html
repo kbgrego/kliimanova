@@ -1,0 +1,27 @@
+<div class="language-switcher" [class.open]="isMenuOpen">
+  <button
+    class="language-trigger"
+    type="button"
+    (click)="toggleMenu()"
+    [attr.aria-expanded]="isMenuOpen">
+
+    <span class="language-code">
+      {{ currentLanguage.toUpperCase() }}
+    </span>
+
+    <span class="arrow">
+      <i class="fa-solid fa-chevron-down"></i>
+    </span>
+  </button>
+
+  <div class="language-menu">
+    @for (language of languages; track language) {
+    <button
+      class="language-option"
+      type="button"
+      (click)="selectLanguage(language)">
+      {{ language.toUpperCase() }}
+    </button>
+  }
+  </div>
+</div>

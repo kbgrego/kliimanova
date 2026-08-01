@@ -1,0 +1,117 @@
+.language-switcher {
+    position: absolute;
+    display: inline-block;
+    right: 1rem;
+    top: 2rem;
+    z-index: 2;
+}
+
+/* ---------- Trigger ---------- */
+
+.language-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 12px;
+
+    background: transparent;
+    border: none;
+    color: #fff;
+
+    cursor: pointer;
+
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+
+    transition: color .25s ease;
+}
+
+.language-trigger:hover {
+    color: #ffffff;
+}
+
+.language-code {
+    min-width: 24px;
+    text-align: center;
+}
+
+/* ---------- Arrow ---------- */
+
+.arrow {
+    display: flex;
+    align-items: center;
+
+    transition: transform .3s ease;
+}
+
+.language-switcher.open .arrow {
+    transform: rotate(180deg);
+}
+
+/* ---------- Dropdown ---------- */
+
+.language-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+
+    width: 72px;
+
+    background: rgba(18,18,18,.96);
+
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+
+    transition:
+        opacity .25s ease,
+        transform .25s ease,
+        visibility .25s;
+
+    z-index: 1000;
+}
+
+.language-switcher.open .language-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* ---------- Options ---------- */
+
+.language-option {
+    width: 100%;
+
+    background: transparent;
+    border: none;
+
+    color: white;
+
+    padding: 12px 0;
+
+    cursor: pointer;
+
+    text-align: center;
+
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .08em;
+
+    transition: background .2s ease;
+}
+
+.language-option:hover {
+    background: rgba(255,255,255,.08);
+}
+
+.language-option:not(:last-child) {
+    border-bottom: 1px solid rgba(255,255,255,.06);
+}

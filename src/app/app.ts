@@ -1,7 +1,13 @@
 import {
   Component,
+  DestroyRef,
+  ElementRef,
   OnInit,
   PLATFORM_ID,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+  afterNextRender,
   inject,
   signal
 } from '@angular/core';
@@ -14,6 +20,8 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ToolbarBottom } from "./control/toolbar-bottom/toolbar-bottom";
 import { BrandLogo } from "./control/brand-logo/brand-logo";
 import { SettingsService } from './core/settings/settings.service';
+import { LanguageSelec } from "./control/language-selec/language-selec";
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-root',
@@ -25,8 +33,9 @@ import { SettingsService } from './core/settings/settings.service';
     FontAwesomeModule,
     CommonModule,
     ToolbarBottom,
-    BrandLogo
-  ],
+    BrandLogo,
+    LanguageSelec
+],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -37,17 +46,25 @@ export class App {
   protected readonly translationService = inject(TranslationService);
   protected readonly settingsService = inject(SettingsService);
 
+  private readonly destroyRef = inject(DestroyRef);
+
   private readonly platformId = inject(PLATFORM_ID);
-  protected readonly languages: SupportedLanguage[] = ['en', 'et', 'ru'];
 
   pageName = '';
+
+  @ViewChildren('navItem')
+  navItems!: QueryList<ElementRef<HTMLAnchorElement>>;
+
+  @ViewChild('navIndicator')
+  navIndicator!: ElementRef<HTMLElement>;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute
   ) {
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(filter(event => event instanceof NavigationEnd),
+            takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         let current = this.route;
 
@@ -56,7 +73,15 @@ export class App {
         }
 
         this.pageName = current.snapshot.data['pageName'];
+
+        requestAnimationFrame(() => this.moveIndicator());
       });
+
+    setTimeout(() => this.moveIndicator());
+
+    afterNextRender(() => {
+      this.moveIndicator();
+    });
   }
 
   ngOnInit(): void {
@@ -65,28 +90,23 @@ export class App {
     }
   }
 
-  protected get currentLanguage(): SupportedLanguage {
-    return this.translationService.currentLanguage();
-  }
+  moveIndicator() {
+    const indicator = this.navIndicator?.nativeElement;
 
-  protected get isMenuOpen(): boolean {
-    return this.translationService.isMenuOpen();
-  }
+    const active = this.navItems.find(item =>
+      item.nativeElement.classList.contains('active')
+    );
 
-  protected getFlag(language: SupportedLanguage): string {
-    return this.translationService.getFlag(language);
+    if (!indicator || !active) {
+      return;
+    }
+
+    indicator.style.width = active.nativeElement.offsetWidth + 'px';
+    indicator.style.left = active.nativeElement.offsetLeft + 'px';
   }
 
   protected t(key: string): string {
     return this.translationService.translate(key);
-  }
-
-  protected selectLanguage(language: SupportedLanguage): void {
-    this.translationService.setLanguage(language);
-  }
-
-  protected toggleMenu(): void {
-    this.translationService.toggleMenu();
   }
 
   protected toggleNavigation(): void {
