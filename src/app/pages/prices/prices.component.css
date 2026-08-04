@@ -199,6 +199,79 @@ i.hot-price {
     color:#2973f2;
 }
 
+.skeleton {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    background: rgba(41, 106, 181, 0.2);
+}
+
+.skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(41, 106, 181, 0.783),
+        transparent
+    );
+    animation: shimmer 1.3s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.skeleton-card {
+    pointer-events: none;
+}
+
+.skeleton.title {
+    height: 24px;
+    width: 140px;
+    margin-bottom: 10px;
+}
+
+.skeleton.subtitle {
+    height: 16px;
+    width: 180px;
+}
+
+.skeleton.price {
+    width: 170px;
+    height: 42px;
+    margin: 5px auto;
+}
+
+.skeleton.section-title {
+    width: 180px;
+    height: 20px;
+    margin: 10px 0;
+}
+
+.skeleton.feature {
+    height: 10px;
+    margin-bottom: 6px;
+    list-style: none;
+}
+
+.skeleton.button {
+    width: 100%;
+    height: 30px;
+    margin-top: 75px;
+    border-radius: 999px;
+}
+
+.price-card-icon.skeleton {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
 /* Features */
 
 .features{

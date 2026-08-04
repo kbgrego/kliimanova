@@ -9,6 +9,7 @@ export interface PricingItem {
   recommended: boolean;
   display_order: number;
   water: boolean;
+  services: string[];
 }
 
 export interface PricingResponse {

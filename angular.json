@@ -39,20 +39,7 @@
               "fonts": {
                 "inline": false
               }
-            },
-            "budgets": [
-              {
-                "type": "anyComponentStyle",
-                "maximumWarning": "8kb",
-                "maximumError": "10kb"
-              },
-              {
-                "type": "any",
-                "name": "css-inline-fonts",
-                "maximumWarning": "9kb",
-                "maximumError": "10kb"
-              }
-            ]
+            }
           },
           "configurations": {
             "production": {

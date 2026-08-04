@@ -8,6 +8,30 @@
       </p>
     </div>
     <div class="price-carusel">
+    @if (loading()) {
+      @for (card of [1,2,3]; track card) {
+        <div class="price-card skeleton-card">
+          <div class="price-card-header">
+            <div class="price-card-icon skeleton"></div>
+            <div class="price-card-title">
+              <div class="skeleton title"></div>
+              <div class="skeleton subtitle"></div>
+            </div>
+          </div>
+          <div class="price-divider"></div>
+          <div class="price-section">
+            <div class="skeleton price"></div>
+          </div>
+          <div class="skeleton section-title"></div>
+          <ul class="features">
+            @for (i of [1,2,3,4,5]; track i) {
+              <li class="skeleton feature"></li>
+            }
+          </ul>
+          <div class="skeleton button"></div>
+        </div>
+      }
+    } @else {
       @for (item of pricing(); track item.package_code) {
         <div class="price-card">
           <div class="price-card-header">
@@ -40,27 +64,8 @@
 
 
           <ul class="features" [class.water-color]="item.recommended">
-            @if (item.package_code == 'BASIC') {
-            <li>Outdoor & indoor unit installation</li>
-            <li>Connection to existing heating system</li>
-            <li>Hydraulic connection</li>
-            <li>Standard connection installation</li>
-            <li>Refrigerant piping</li>
-            <li>System vacuuming</li>
-            <li>Leak test</li>
-            <li>Connecting of communications</li>
-            <li>System filling and air purging</li>
-            <li>Equipment setup and start-up</li>
-            } @else if (item.package_code == 'STANDART') {
-              <li>Everything from the standard package </li>
-              <li>3-way valve installation and connection </li>
-              <li>Heating / DHW switching setup</li>
-              <li>Hot water heating operation check</li>
-            } @else {
-              <li>Everything from the previous package</li>
-              <li>Buffer tank connection</li>
-              <li>Additional hydraulic installation</li>
-              <li>System setup with buffer tank</li>
+            @for (serv of item.services; track $index) {
+              <li>{{ serv }}</li>
             }
           </ul>
 
@@ -70,6 +75,7 @@
           </button>
         </div>
       }
+    }
     </div>
     <div class="price-carusel-footer" style="">
       <div class="price-card-footer equipment">

@@ -24,22 +24,28 @@
             {{ t('nav.home') }}
         </a>
         <a #navItem
-          routerLink="/projects"
+          routerLink="/cooling"
           routerLinkActive="active"
           (click)="closeNavigation()">
-            {{ t('nav.projects') }}
+            {{ t('nav.cooling') }}
+        </a>
+        <a #navItem
+          routerLink="/heating"
+          routerLinkActive="active"
+          (click)="closeNavigation()">
+            {{ t('nav.heating') }}
+        </a>
+        <a #navItem
+          routerLink="/heating-pumps"
+          routerLinkActive="active"
+          (click)="closeNavigation()">
+            {{ t('nav.heating-pumps') }}
         </a>
         <a #navItem
           routerLink="/request"
           routerLinkActive="active"
           (click)="closeNavigation()">
             {{ t('nav.consultation') }}
-        </a>
-        <a #navItem
-          routerLink="/prices"
-          routerLinkActive="active"
-          (click)="closeNavigation()">
-            {{ t('nav.prices') }}
         </a>
 
         <!-- animated underline -->

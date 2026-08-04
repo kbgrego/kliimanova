@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
 import { PricingService } from '../../core/pricing/pricing.service';
 import { UtilsService } from '../../services/utils.service';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { PricingItem } from '../../core/pricing/pricing.model';
+import { ActivatedRoute, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-prices',
@@ -23,13 +24,24 @@ export class PricesComponent {
 
   pricing = this.pricingService.pricing;
 
+  protected serviceCode: string = '';
+
+  readonly loading = signal(true);
+
   wc = '';
 
+  constructor( private route: ActivatedRoute ) {
+  }
+
   ngOnInit() {
-    console.log('PricesComponent initialized');
+    this.serviceCode = this.route.snapshot.data['serviceCode'];
+
     this.pricingService
-      .loadPricing('HEATING_PIPES')
-      .subscribe();
+      .loadPricing(this.serviceCode)
+      .subscribe({
+        complete: () => this.loading.set(false),
+        error: () => this.loading.set(false)
+      });
   }
 
   protected t(key: string): string {
@@ -37,12 +49,12 @@ export class PricesComponent {
   }
 
   protected getOfferPrice(): PricingItem[] {
-    return this.pricingService.getByService('HEATING_PIPES');
+    return this.pricingService.getByService(this.serviceCode);
   }
 
   protected getBasicPrice(): string {
     return this.utils.formatWithSpaces(this.pricingService
-      .getByService('HEATING_PIPES')
+      .getByService(this.serviceCode)
       .find(x => x.package_code === 'BASIC')
       ?.price);
   }
