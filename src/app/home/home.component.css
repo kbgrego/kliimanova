@@ -12,7 +12,7 @@
 }
 
 .hero-card {
-  max-width: 640px;
+  max-width: 100%;
   padding: 2.5rem 0;
   border-radius: 0;
   background: transparent;
@@ -22,19 +22,31 @@
   color: #f7f7f2;
 }
 
+.hero-toptitle {
+  font-family: 'Avenir Next', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  position: relative;
+  padding: 1rem 0rem;
+  color: #255cce;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
 .hero-card h1 {
   margin: 0 0 0.5rem;
   font-family: 'Avenir Next', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 3rem;
-  font-weight: 300;
+  font-size: 4rem;
+  font-weight: 400;
   line-height: 1.0;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .headline-gradient {
+  font-weight: 400;
   display: inline-block;
-  background: linear-gradient(90deg, #1d4b96 0%, #fe8708c9 100%);
+  background: linear-gradient(90deg, #1d4b96 0%, #1d4b96 40%, #fe8708c9 60%, #fe8708c9 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -51,40 +63,190 @@
   color: rgba(247, 247, 242, 0.95);
 }
 
-.service-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+.hero-divider {
+  width: 300px;
+  height: 2px;
+  background: linear-gradient(90deg, #73a5f5 0%, #1d4b96 20%, #5a08fec9 40%, #fe8708c9 55%, #fe8708c9 100%);
+  margin: 2rem 0;
 }
 
-.service-pill {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
-  padding: 1rem;
-  border-radius: 0;
-  background: transparent;
-  border: 0;
-  color: #f7f7f2;
-  letter-spacing: 0.04em;
-  text-align: center;
+.hero-service-cards {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    background: rgba(15,20,28,.75);
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 22px;
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.45),
+        inset 0 1px rgba(255,255,255,.05);
 }
 
-.service-pill .service-pill-text {
-  font-size: 1rem;
-  font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  font-weight: 200;
-  color: rgba(247, 247, 242, 0.85);
+.hero-service-card{
+    position: relative;
+    display:flex;
+    align-items:flex-start;
+    gap:24px;
+    padding:42px;
+    min-height:260px;
+    transition:.35s;
 }
 
-.service-pill .service-icon {
-  display: block;
-  width: 2.45rem;
-  height: 2.45rem;
-  object-fit: contain;
-  line-height: 1;
+.icon-circle{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.service-card-icon{
+    width:62px;
+    height:62px;
+    object-fit:contain;
+}
+
+.hero-service-card:not(:last-child){
+    border-right:1px solid rgba(255,255,255,.08);
+}
+
+.hero-service-card:hover{
+    background:rgba(255,255,255,.03);
+}
+
+
+.hero-service-card.blue .icon-circle{
+    position: relative;
+    border-radius: 99px;
+    background: transparent; /* Your inner circle color */
+    box-shadow:
+        0 0 15px rgba(30, 145, 252, 0.3),
+        inset 0 0 15px rgba(30, 145, 252, 0.3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+/* This creates the gradient border */
+.hero-service-card.blue .icon-circle::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 99px;
+    padding: 1px; /* This acts as your 1px border thickness */
+    background: linear-gradient(45deg, #7baffebb 10%, #2d5dca33 20%, #2d5dca33 30%, #7b8cfeff 35%, #2d53c444 45%, #7bb6fe77 90%);
+    -webkit-mask:
+        linear-gradient(#7077b5 0 0) content-box,
+        linear-gradient(#a2aeff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero-service-card.orange .icon-circle {
+    position: relative;
+    border-radius: 99px;
+    background: transparent; /* Your inner circle color */
+    box-shadow:
+        0 0 15px rgba(252, 122, 30, 0.323),
+        inset 0 0 15px rgba(252, 122, 30, 0.323);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+/* This creates the gradient border */
+.hero-service-card.orange .icon-circle::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 99px;
+    padding: 1px; /* This acts as your 1px border thickness */
+    background: linear-gradient(30deg, #feb47bff 10%, #c44b2d44 50%, #feb47bdd 55%, #c44b2d55 65%, #feb47b88 90%);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.content{
+
+    display:flex;
+    flex-direction:column;
+
+    flex:1;
+}
+
+.service-card-text{
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:.05em;
+    color:white;
+    text-transform:uppercase;
+}
+
+.service-card-subtext{
+    margin-top:10px;
+    font-size:14px;
+    font-weight:500;
+}
+
+.hero-service-card.blue .service-card-subtext{
+    color:#2295ff;
+}
+
+.hero-service-card.orange .service-card-subtext{
+    color:#ff8d2d;
+}
+
+.divider{
+    width:170px;
+    height:1px;
+    background:rgba(255,255,255,.12);
+    margin:28px 0;
+}
+
+.card-button{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:none;
+    color:white;
+    font-size:34px;
+    cursor:pointer;
+    transition:.35s;
+}
+
+.hero-service-card.blue .card-button{
+    border:1px solid #1f7cff;
+    color:#1f7cff;
+}
+
+.hero-service-card.orange .card-button{
+    border:1px solid #ff7c1d;
+    color:#ff7c1d;
+}
+
+.card-button:hover{
+
+    transform:translateX(6px);
+
+    color:white;
 }
 
 .cta-group {
@@ -244,4 +406,36 @@
     height: 2.65rem;
     font-size: 1.3rem;
   }
+}
+
+@media (max-width:1200px){
+
+    .hero-service-cards{
+
+        grid-template-columns:1fr 1fr;
+    }
+
+    .hero-service-card:nth-child(2){
+        border-right:none;
+    }
+}
+
+@media (max-width:700px){
+
+    .hero-service-cards{
+
+        grid-template-columns:1fr;
+    }
+
+    .hero-service-card{
+
+        border-right:none !important;
+        border-bottom:1px solid rgba(255,255,255,.08);
+
+        min-height:auto;
+    }
+
+    .hero-service-card:last-child{
+        border-bottom:none;
+    }
 }

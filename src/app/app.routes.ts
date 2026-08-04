@@ -6,7 +6,7 @@ import { PricesComponent } from './pages/prices/prices.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, data: { pageName: '' }  },
   {
     path: 'maintenance',
     loadChildren: () => import('./maintenance/maintenance.module').then((m) => m.MaintenanceModule)

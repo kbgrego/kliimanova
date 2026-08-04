@@ -1,27 +1,94 @@
 <section class="page-shell">
   <main class="hero">
     <div class="hero-card">
+      <div class="hero-toptitle">Premium climate solutions</div>
       <h1>{{ t('hero.title') }}</h1>
       <h1><span class="headline-gradient">{{ t('hero.titleHighlight') }}</span></h1>
       <p class="hero-subtitle">
         {{ t('hero.subtitle') }}
       </p>
-      <div class="service-list" aria-label="Our services">
-        <span class="service-pill">
-          <img class="service-icon" src="/ac.png" alt="Cooling icon" />
-          <span class="service-pill-text">{{ t('hero.services.cooling') }}</span>
-        </span>
-        <span class="service-pill">
-          <img class="service-icon" src="/fire.png" alt="Heating icon" />
-          <span class="service-pill-text">{{ t('hero.services.heating') }}</span>
-        </span>
-        <a href="/prices">
-        <span class="service-pill">
-          <img class="service-icon" src="/system-heat.png" alt="Heat Pumps icon" />
-          <span class="service-pill-text">{{ t('hero.services.heatPumps') }}</span>
-        </span>
-        </a>
+      <div class="hero-divider"></div>
+
+      <div class="hero-service-cards">
+
+        <div class="hero-service-card blue">
+          <div class="icon-circle">
+            <img class="service-card-icon" src="/snowflake.png" alt="">
+          </div>
+
+          <div class="content">
+            <span class="service-card-text">{{ t('hero.services.cooling') }}</span>
+            <span class="service-card-subtext">
+              Air Conditioning
+            </span>
+
+            <div class="divider"></div>
+
+            <button class="card-button">
+              →
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-service-card orange">
+          <div class="icon-circle">
+            <img class="service-card-icon" src="/fire.png" alt="">
+          </div>
+
+          <div class="content">
+            <span class="service-card-text">{{ t('hero.services.heating') }}</span>
+            <span class="service-card-subtext">
+              Air-to-Air Heat Pumps
+            </span>
+
+            <div class="divider"></div>
+
+            <button class="card-button">
+              →
+            </button>
+          </div>
+        </div>
+
+        <!-- repeat -->
+        <div class="hero-service-card blue">
+          <div class="icon-circle">
+              <img class="service-card-icon" src="/system-heat.png" alt="">
+            </div>
+
+            <div class="content">
+              <span class="service-card-text">{{ t('hero.services.heatPumps') }}</span>
+              <span class="service-card-subtext">
+                Air-to-Water Heat Pumps
+              </span>
+
+              <div class="divider"></div>
+
+              <button class="card-button">
+                →
+              </button>
+            </div>
+         </div>
+
+         <div class="hero-service-card orange">
+          <div class="icon-circle">
+              <img class="service-card-icon" src="/service.png" alt="">
+            </div>
+
+            <div class="content">
+              <span class="service-card-text">{{ t('hero.services.service') }}</span>
+              <span class="service-card-subtext">
+                Maintenance & Support
+              </span>
+
+              <div class="divider"></div>
+
+              <button class="card-button">
+                →
+              </button>
+            </div>
+        </div>
       </div>
+
       <div class="cta-group" role="group" aria-label="Primary actions">
         <a class="cta" href="/request">
           <span>{{ t('hero.cta.consultation') }}</span>
