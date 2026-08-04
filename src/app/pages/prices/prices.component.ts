@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
 import { PricingService } from '../../core/pricing/pricing.service';
 import { UtilsService } from '../../services/utils.service';
@@ -6,6 +6,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { PricingItem } from '../../core/pricing/pricing.model';
 import { ActivatedRoute, Routes } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-prices',
@@ -28,6 +29,8 @@ export class PricesComponent {
 
   readonly loading = signal(true);
 
+  private platformId = inject(PLATFORM_ID);
+
   wc = '';
 
   constructor( private route: ActivatedRoute ) {
@@ -36,12 +39,18 @@ export class PricesComponent {
   ngOnInit() {
     this.serviceCode = this.route.snapshot.data['serviceCode'];
 
-    this.pricingService
-      .loadPricing(this.serviceCode)
-      .subscribe({
-        complete: () => this.loading.set(false),
-        error: () => this.loading.set(false)
-      });
+    // Skip running this HTTP request on the Node.js server during build
+    if (isPlatformBrowser(this.platformId)) {
+      this.pricingService
+        .loadPricing(this.serviceCode)
+        .subscribe({
+          complete: () => this.loading.set(false),
+          error: () => this.loading.set(false)
+        });
+    } else {
+      // Set loading to false immediately on the server so rendering completes
+      this.loading.set(false);
+    }
   }
 
   protected t(key: string): string {
