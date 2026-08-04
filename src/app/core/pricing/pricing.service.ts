@@ -36,18 +36,14 @@ export class PricingService {
       url += `?service_code=${serviceCode}`;
     }
 
-    const response$ = this.http.get<PricingResponse>(url);
-
-    console.log('PricesComponent initialized');
-
-    response$.subscribe(response => {
-      if (response.success) {
-        this._pricing.set(response.data);
-        this.assignServicesToPackages(response.data);
-      }
-    });
-
-    return response$;
+   return this.http.get<PricingResponse>(url).pipe(
+      tap(response => {
+        if (response.success) {
+          this._pricing.set(response.data);
+          this.assignServicesToPackages(response.data);
+        }
+      })
+    );
   }
 
   getByService(serviceCode: string): PricingItem[] {
