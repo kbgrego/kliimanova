@@ -74,7 +74,7 @@ export class App {
 
         this.pageName = current.snapshot.data['pageName'];
 
-        requestAnimationFrame(() => this.moveIndicator());
+        setTimeout(() => this.moveIndicator(), 0);
       });
 
     setTimeout(() => this.moveIndicator());
