@@ -40,7 +40,7 @@ export class PricingService {
       tap(response => {
         if (response.success) {
           this._pricing.set(response.data);
-          this.assignServicesToPackages(response.data);
+          // this.assignServicesToPackages(response.data);
         }
       })
     );

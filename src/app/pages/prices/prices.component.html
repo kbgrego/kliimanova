@@ -2,7 +2,7 @@
   <main class="hero">
     <div class="hero-card">
       <p class="hero-menu-path"></p>
-      <h1>Standard installation</h1>
+      <h1>{{ title }}</h1>
       <p class="hero-subtitle">
         Professional installation from <i class="hot-price">@if (getBasicPrice(); as price) { {{ price }} € }</i>
       </p>
@@ -48,7 +48,7 @@
             </div>
 
             <div class="price-card-title">
-              <h2>{{ item.package_name }}</h2>
+              <h2 fitText>{{ item.package_name }}</h2>
               <h5>{{ item.description }}</h5>
             </div>
           </div>

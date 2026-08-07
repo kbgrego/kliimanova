@@ -21,7 +21,7 @@ export class RequestProcessor {
       'Service: ' + this.escapeMarkdown(data.Service) + '\n' +
       'Contact: ' + this.escapeMarkdown(data.ContactName) + '\n' +
       'Email: ' + this.escapeMarkdown(data.Email) + '\n' +
-      'Address: ' + this.escapeMarkdown(data.Address) 
+      'Address: ' + this.escapeMarkdown(data.Address)
     );
 
     if (telRsult) {
@@ -49,6 +49,6 @@ export class RequestProcessor {
   }
 
   private escapeMarkdown(text: string): string {
-    return text.replace(/[_*[\]()~`>#+\-=|{}.!\\]/g, '\\$&');
+    return text; //text.replace(/[_*[\]()~`>#+\-=|{}.!\\]/g, '\\$&');
   }
 }

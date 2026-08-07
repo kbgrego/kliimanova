@@ -10,9 +10,9 @@ export const routes: Routes = [
     path: 'maintenance',
     loadChildren: () => import('./maintenance/maintenance.module').then((m) => m.MaintenanceModule)
   },
-  { path: 'cooling', component: PricesComponent, data: { pageName: 'Pricing', serviceCode: 'COOLING' } },
-  { path: 'heating', component: PricesComponent, data: { pageName: 'Pricing', serviceCode: 'HEATING' } },
-  { path: 'heating-pumps', component: PricesComponent, data: { pageName: 'Pricing', serviceCode: 'HEATING_PUMPS' } },
+  { path: 'cooling', component: PricesComponent, data: { pageName: 'Pricing', serviceCode: 'COOLING', title: 'Cooling installation' } },
+  { path: 'heating', component: PricesComponent, data: { pageName: 'Pricing', serviceCode: 'HEATING', title: 'Heating installation' } },
+  { path: 'heating-pumps', component: PricesComponent, data: { pageName: 'Pricing', serviceCode: 'HEATING_PUMPS', title: 'Standard installation' } },
   { path: 'request', component: ConsultRequestComponent, data: { pageName: '' } },
   { path: '**', redirectTo: 'home' }
 ];

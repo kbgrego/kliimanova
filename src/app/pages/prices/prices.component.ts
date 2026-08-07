@@ -7,10 +7,11 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { PricingItem } from '../../core/pricing/pricing.model';
 import { ActivatedRoute, Routes } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { FitTextDirective } from '../../shared/fit-text';
 
 @Component({
   selector: 'app-prices',
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, FitTextDirective],
   templateUrl: './prices.component.html',
   styleUrl: './prices.component.css',
 })
@@ -28,6 +29,7 @@ export class PricesComponent {
   protected serviceCode: string = '';
 
   readonly loading = signal(true);
+  protected title: string = '';
 
   private platformId = inject(PLATFORM_ID);
 
@@ -38,6 +40,7 @@ export class PricesComponent {
 
   ngOnInit() {
     this.serviceCode = this.route.snapshot.data['serviceCode'];
+    this.title = this.route.snapshot.data['title'];
 
     // Skip running this HTTP request on the Node.js server during build
     if (isPlatformBrowser(this.platformId)) {
