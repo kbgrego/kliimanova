@@ -23,36 +23,55 @@ export default async function handler(
 
         let sql = `
             SELECT
-                service_code,
-                service_name,
-                package_code,
-                package_name,
-                description,
-                price,
-                duration_hours,
-                recommended,
-                display_order
-            FROM pricing
-            WHERE active = true
+                p.service_code,
+                p.service_name,
+                p.package_code,
+                p.package_name,
+                p.description,
+                p.price,
+                p.duration_hours,
+                p.recommended,
+                p.display_order,
+
+                array_agg(ps.service_description ORDER BY ps.service_order) AS services
+
+            FROM pricing p
+
+            LEFT JOIN pricing_services ps
+                ON ps.service_code = p.service_code
+              AND ps.package_code = p.package_code
+
+            WHERE p.active = true
         `;
 
         const params = [];
 
         if (service_code) {
             params.push(service_code);
-            sql += ` AND service_code = $${params.length}`;
+            sql += ` AND p.service_code = $${params.length}`;
         }
 
         if (package_code) {
             params.push(package_code);
-            sql += ` AND package_code = $${params.length}`;
+            sql += ` AND p.package_code = $${params.length}`;
         }
 
         sql += `
+            GROUP BY
+                p.service_code,
+                p.service_name,
+                p.package_code,
+                p.package_name,
+                p.description,
+                p.price,
+                p.duration_hours,
+                p.recommended,
+                p.display_order
+
             ORDER BY
-                service_code,
-                display_order,
-                package_name
+                p.service_code,
+                p.display_order,
+                p.package_name
         `;
 
         const result = await pool.query(sql, params);
