@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
     try {
         const cookies = parseCookies(req.headers.cookie);
-        const sessionId = cookies.session;
+        const sessionId = cookies['session'];
 
         if (sessionId) {
             await deleteSession(sessionId);

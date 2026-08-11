@@ -25,7 +25,7 @@ export default async function handler(
 
   const cookies = parseCookies(req.headers.cookie);
 
-  const storedState = cookies.oauth_state;
+  const storedState = cookies['oauth_state'];
 
   if (!storedState || storedState !== state) {
     return res.status(400).json({

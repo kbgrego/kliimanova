@@ -1,5 +1,6 @@
 import crypto from 'node:crypto';
 import pool from '../../public/server/services/db.js';
+import { QueryResult } from 'pg';
 
 const SESSION_DURATION_SECONDS = 60 * 60 * 24 * 7; // 7 days
 
@@ -28,7 +29,7 @@ export function createSession(adminUserId: any) {
 }
 
 export async function getSession(sessionId: any) {
-    const result = await pool.query(
+    const result:QueryResult = await pool.query(
         `
         SELECT
             s.id,
