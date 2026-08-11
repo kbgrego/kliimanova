@@ -1,7 +1,7 @@
 import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
-import { TranslationService } from '../../services/translation.service';
+import { TranslationService } from '../../core/services/translation.service';
 import { PricingService } from '../../core/pricing/pricing.service';
-import { UtilsService } from '../../services/utils.service';
+import { UtilsService } from '../../core/services/utils.service';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { PricingItem } from '../../core/pricing/pricing.model';

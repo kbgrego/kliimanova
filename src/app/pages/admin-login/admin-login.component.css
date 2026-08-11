@@ -1,0 +1,180 @@
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: transparent;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+
+  padding: 48px 42px;
+  color: #fff;
+
+  border-radius: 36px;
+
+  border: 1px solid rgba(247, 247, 242, 0.16);
+  background: rgba(5, 5, 5, 0.55);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+
+  text-align: center;
+}
+
+.logo {
+  width: 250px;
+  height: 250px;
+
+  margin: 0 auto 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 999px;
+
+  background: url('/logo.png') no-repeat center center;
+
+  color: #1597a8;
+
+  font-size: 30px;
+}
+
+.brand-logo {
+  margin: 0 auto 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: auto;
+  height: 5rem;
+  max-height: 5rem;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.login-card h1 {
+  margin: 0;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  color: #49a8f6a1;
+}
+
+.subtitle {
+  margin: 10px 0 32px;
+
+  color: #a6cdecb9;
+
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.google-btn {
+  width: 100%;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  border: 1px solid #d7dce0;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #30353a;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
+}
+
+.google-btn:hover {
+  background: #f8fafb;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.google-btn:active {
+  transform: translateY(1px);
+}
+
+.google-icon {
+  width: 22px;
+  height: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  color: #4285f4;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+
+  margin: 32px 0 20px;
+
+  color: #a0aab2;
+
+  font-size: 12px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+
+  flex: 1;
+
+  height: 1px;
+
+  background: #e5e9ec;
+}
+
+.divider span {
+  padding: 0 12px;
+}
+
+.footer-text {
+  margin: 0;
+
+  color: #8a969f;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .login-page {
+    padding: 16px;
+  }
+
+  .login-card {
+    padding: 40px 24px;
+  }
+}
