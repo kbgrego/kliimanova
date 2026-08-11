@@ -15,7 +15,7 @@ import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterLinkActive, Ro
 import { filter } from 'rxjs/operators';
 import { NgIconsModule } from '@ng-icons/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { TranslationService, type SupportedLanguage} from './services/translation.service';
+import { TranslationService, type SupportedLanguage} from './core/services/translation.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ToolbarBottom } from "./control/toolbar-bottom/toolbar-bottom";
 import { BrandLogo } from "./control/brand-logo/brand-logo";

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RecaptchaModule } from 'ng-recaptcha-2';
 import { RequestEntry } from '../../core/request/request.model';
-import { RequestService } from '../../services/request.service';
+import { RequestService } from '../../core/services/request.service';
 
 @Component({
   selector: 'app-consult-request',

@@ -1,7 +1,8 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface AuthUser {
   email: string;
@@ -16,20 +17,29 @@ export class AuthService {
 
   private readonly http = inject(HttpClient);
 
-  private readonly currentUser$ = this.http
-    .get<AuthUser>('/api/auth/me', {
-      withCredentials: true
-    })
-    .pipe(
-      catchError(() => of(null)),
-      shareReplay(1)
-    );
+  private readonly currentUser$: Observable<AuthUser | null> = of(null);
+
+  private readonly platformId = inject(PLATFORM_ID);
+
+  constructor() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.currentUser$ = this.http
+        .get<AuthUser>('/api/auth/me', {
+          withCredentials: true
+        })
+        .pipe(
+          catchError(() => of(null)),
+          shareReplay(1)
+        );
+    }
+  }
 
   getCurrentUser(): Observable<AuthUser | null> {
     return this.currentUser$;
   }
 
   isAuthenticated(): Observable<boolean> {
+
     return this.currentUser$.pipe(
       map(user => user !== null)
     );

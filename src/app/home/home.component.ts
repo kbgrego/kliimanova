@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { TranslationService } from '../services/translation.service';
+import { TranslationService } from '../core/services/translation.service';
 import { SettingsService } from '../core/settings/settings.service';
 import { Router } from '@angular/router';
 
