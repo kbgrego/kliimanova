@@ -1,13 +1,13 @@
 import crypto from 'node:crypto';
 import pool from '../../public/server/services/db.js';
-import { QueryResult } from 'pg';
 
 const SESSION_DURATION_SECONDS = 60 * 60 * 24 * 7; // 7 days
 
-export function createSession(adminUserId: any) {
+export async function createSession(adminUserId: string) {
+
     const sessionId = crypto.randomUUID();
 
-    return pool.query(
+    const result = await pool.query(
         `
         INSERT INTO admin_sessions (
             id,
@@ -25,11 +25,14 @@ export function createSession(adminUserId: any) {
             expires_at
         `,
         [sessionId, adminUserId]
-    ).then(result => result.rows[0]);
+    );
+
+    return result.rows[0];
 }
 
-export async function getSession(sessionId: any) {
-    const result:QueryResult = await pool.query(
+export async function getSession(sessionId: string) {
+
+    const result = await pool.query(
         `
         SELECT
             s.id,
@@ -52,7 +55,8 @@ export async function getSession(sessionId: any) {
     return result.rows[0] ?? null;
 }
 
-export async function deleteSession(sessionId: any) {
+export async function deleteSession(sessionId: string) {
+
     await pool.query(
         `
         DELETE FROM admin_sessions
@@ -62,4 +66,6 @@ export async function deleteSession(sessionId: any) {
     );
 }
 
-export { SESSION_DURATION_SECONDS };
+export {
+    SESSION_DURATION_SECONDS
+};
